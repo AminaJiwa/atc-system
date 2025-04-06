@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch ATC System",
+            "request": "launch",
+            "mainClass": "com.atcsystem.App",
+            "vmArgs": "--module-path \"C:/Users/amina/javafx-sdk-21.0.6\" --add-modules javafx.controls,javafx.fxml"
+        }
+    ]
+}

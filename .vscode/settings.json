@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "C:/Users/amina/javafx-sdk-21.0.6/lib/*.jar"
+    ],
+    "java.project.sourcePaths": ["src/main/java"]
+}

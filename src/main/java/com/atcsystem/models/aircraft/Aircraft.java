@@ -34,6 +34,7 @@ public class Aircraft {
 
     }
     
+    //Setters and getters
     public String getRegistrationNumber() {
         return registrationNumber;
     }
@@ -129,6 +130,34 @@ public class Aircraft {
     public void setFlightPhase(FlightPhase flightPhase) {
         this.flightPhase = flightPhase;
     }
+
+    //Functions 
+    public void changePhase(FlightPhase currentFlightPhase, FlightPhase newFlightPhase) {
+        if (isValidTransition(currentFlightPhase, newFlightPhase)) {
+            this.flightPhase = newFlightPhase;
+        }
+        else {
+            throw new IllegalStateException("Invalid phase transition");
+        }
+
+    }
+
+    private boolean isValidTransition(FlightPhase currentPhase, FlightPhase newPhase) {
+
+        return switch(currentPhase) {
+            case PARKED -> newPhase == FlightPhase.TAXIING;
+            case TAXIING -> newPhase == FlightPhase.TAKEOFF || newPhase == FlightPhase.PARKED;
+            case TAKEOFF -> newPhase == FlightPhase.CLIMBING || newPhase == FlightPhase.EMERGENCY;
+            case CLIMBING -> newPhase == FlightPhase.CRUISING || newPhase == FlightPhase.DIVERTING || newPhase == FlightPhase.EMERGENCY;
+            case CRUISING -> newPhase == FlightPhase.DESCENDING || newPhase == FlightPhase.CLIMBING || newPhase == FlightPhase.DIVERTING || newPhase == FlightPhase.EMERGENCY;
+            case DESCENDING -> newPhase == FlightPhase.LANDING || newPhase == FlightPhase.CRUISING || newPhase == FlightPhase.DIVERTING || newPhase == FlightPhase.EMERGENCY;
+            case LANDING -> newPhase == FlightPhase.TAXIING;
+            case DIVERTING -> newPhase == FlightPhase.CLIMBING || newPhase == FlightPhase.CRUISING || newPhase == FlightPhase.DESCENDING || newPhase == FlightPhase.EMERGENCY;
+            case EMERGENCY -> newPhase == FlightPhase.TAXIING;
+            default -> true;
+        };
+    }
+
 
 
 }

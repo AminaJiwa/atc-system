@@ -25,5 +25,23 @@ public class Flight {
         this.status = status;
     }
 
+    //Getters and Setters
+    public String getFlightNumber() {return flightNumber;}
+    public Aircraft getAircraft() {return aircraft;}
+    public void setAircraft(Aircraft aircraft) {this.aircraft = aircraft;}
+    public String getOriginCountry() {return originCountry;}
+    public void setOriginCountry(String originCountry) {this.originCountry = originCountry;}
+    public String getDestination() {return destination;}
+    public void setDestination(String destination) {this.destination = destination;}
+    public LocalDateTime getScheduledDeparture() {return scheduledDeparture;}
+    public void setScheduledDeparture(LocalDateTime scheduledDeparture) {this.scheduledDeparture = scheduledDeparture;}
+    public LocalDateTime getEstimatedArrival() {return estimatedArrival;}
+    public void setEstimatedArrival(LocalDateTime estimatedArrival) {this.estimatedArrival = estimatedArrival;}
+    public List<Position> getRoute() {return route;}
+    public void setRoute(List<Position> route) {this.route = route;}
+    public FlightStatus getStatus() {return status;}
+    public void setStatus(FlightStatus status) {this.status = status;}
+
+    
 
 }

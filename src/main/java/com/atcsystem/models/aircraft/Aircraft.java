@@ -1,5 +1,9 @@
 package com.atcsystem.models.aircraft;
 
+import java.time.LocalDateTime;
+
+import com.atcsystem.models.flights.Position;
+
 public class Aircraft {
 
     private String registrationNumber;
@@ -158,6 +162,16 @@ public class Aircraft {
         };
     }
 
-
+    //Create position snapshot
+    public Position createPositionSnapshot() {
+        return new Position(
+            this.latitude,
+            this.longitude,
+            this.altitude,
+            LocalDateTime.now(),
+            this.speedHorizontal,
+            this.direction
+        );
+    }
 
 }

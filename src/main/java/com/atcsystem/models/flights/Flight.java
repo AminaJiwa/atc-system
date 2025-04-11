@@ -1,8 +1,9 @@
 package com.atcsystem.models.flights;
 
-import com.atcsystem.models.aircraft.Aircraft;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import com.atcsystem.models.aircraft.Aircraft;
 public class Flight {
     private final String flightNumber;
     private Aircraft aircraft;
@@ -10,7 +11,7 @@ public class Flight {
     private String destination;
     private LocalDateTime scheduledDeparture;
     private LocalDateTime estimatedArrival;
-    //private List<Position> route;
+    private List<Position> route;
     private FlightStatus status;
 
     public Flight(String flightNumber,  Aircraft aircraft, String originCountry, String destination, LocalDateTime scheduledDeparture, LocalDateTime estimatedArrival, List<Position> route, FlightStatus status) {
@@ -20,7 +21,7 @@ public class Flight {
         this.destination = destination;
         this.scheduledDeparture = scheduledDeparture;
         this.estimatedArrival = estimatedArrival;
-        //this.route = route;
+        this.route = route;
         this.status = status;
     }
 

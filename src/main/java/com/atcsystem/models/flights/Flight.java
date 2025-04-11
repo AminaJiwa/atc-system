@@ -1,6 +1,7 @@
 package com.atcsystem.models.flights;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.atcsystem.models.aircraft.Aircraft;
@@ -11,7 +12,7 @@ public class Flight {
     private String destination;
     private LocalDateTime scheduledDeparture;
     private LocalDateTime estimatedArrival;
-    private List<Position> route;
+    private List<Position> route = new ArrayList<>();
     private FlightStatus status;
 
     public Flight(String flightNumber,  Aircraft aircraft, String originCountry, String destination, LocalDateTime scheduledDeparture, LocalDateTime estimatedArrival, List<Position> route, FlightStatus status) {
@@ -37,10 +38,26 @@ public class Flight {
     public void setScheduledDeparture(LocalDateTime scheduledDeparture) {this.scheduledDeparture = scheduledDeparture;}
     public LocalDateTime getEstimatedArrival() {return estimatedArrival;}
     public void setEstimatedArrival(LocalDateTime estimatedArrival) {this.estimatedArrival = estimatedArrival;}
-    public List<Position> getRoute() {return route;}
+    public List<Position> getRoute() {return new ArrayList<>(route);}
     public void setRoute(List<Position> route) {this.route = route;}
     public FlightStatus getStatus() {return status;}
     public void setStatus(FlightStatus status) {this.status = status;}
+
+    //Functions
+    public void updateFlightPosition(Aircraft aircraft) {
+        Position newPosition = aircraft.createPositionSnapshot();
+        this.route.add(newPosition);
+
+        //Update status based on altitude
+        if (newPosition.getAltitude() > 0 && this.status == FlightStatus.PUSHBACK) {
+            this.status = FlightStatus.DEPARTED;
+        }
+    }
+
+
+    public Position getLatestPosition() {
+        return this.route.isEmpty() ? null : this.route.get(route.size() - 1);
+    }
 
     
 
